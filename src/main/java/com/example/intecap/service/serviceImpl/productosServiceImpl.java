@@ -1,44 +1,23 @@
-package com.example.intecap.service.serviceImpl;
-
-import java.util.Optional;
+package com.tienda.tienda.Service.ServiceImpl;
 
 import org.springframework.stereotype.Service;
 
-import com.example.intecap.common.CommonSvcImpl;
-import com.example.intecap.models.productosModel;
-import com.example.intecap.repository.productoRepository;
-import com.example.intecap.service.productosService;
+import com.tienda.tienda.Models.productos;
+import com.tienda.tienda.Repository.productoRepository;
+import com.tienda.tienda.Service.productoService;
+import com.tienda.tienda.common.CommonSvcImpl;
 
 @Service
-public class productosServiceImpl extends CommonSvcImpl<productosModel, productoRepository> implements productosService {
+public class productosServiceImpl extends CommonSvcImpl<productos, productoRepository> implements productoService {
 
     @Override
-    public void deleteById(int id) {
-        this.repository.deleteById(id);
+    public Iterable<productos> findAll() {
+        return repository.findAll();
     }
 
     @Override
-    public Iterable<productosModel> findAll() {
-        return this.repository.findAll();
-    }
-
-    @Override
-    public Optional<productosModel> findById(int id) {
-        return this.repository.findById(id);
-    }
-
-    @Override
-    public productosModel save(productosModel entity) {
-        return this.repository.save(entity);
-    }
-
-    @Override
-    public Iterable<productosModel> saveAll(Iterable<productosModel> entities) {
-        return this.repository.saveAll(entities);
-    }
-
-    @Override
-    public productosModel findByNombre(String nombre) {
-        return this.repository.findByNombre(nombre);
+    public productos save(productos producto) {
+        System.out.println("Guardando producto");
+        return repository.save(producto);
     }
 }

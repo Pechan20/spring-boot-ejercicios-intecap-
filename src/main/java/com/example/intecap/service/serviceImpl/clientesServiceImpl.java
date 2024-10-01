@@ -1,45 +1,24 @@
-package com.example.intecap.service.serviceImpl;
-
-
-import java.util.Optional;
+package com.example.tienda.Service.ServiceImpl;
 
 import org.springframework.stereotype.Service;
 
-import com.example.intecap.common.CommonSvcImpl;
-import com.example.intecap.models.clientesModel;
-import com.example.intecap.repository.clienteRepository;
-import com.example.intecap.service.clientesService;
+import com.example.tienda.Models.clientes;
+import com.example.tienda.Repository.clientesRepository;
+import com.example.tienda.Service.clienteService;
+import com.example.tienda.common.CommonSvcImpl;
 
 @Service
-public class clientesServiceImpl extends CommonSvcImpl<clientesModel, clienteRepository> implements clientesService {
+public class clientesServiceImpl extends CommonSvcImpl<clientes, clientesRepository> implements clienteService {
 
     @Override
-    public void deleteById(int id) {
-        this.repository.deleteById(id);
+    public Iterable<clientes> findAll() {
+        return repository.findAll();
     }
 
     @Override
-    public Iterable<clientesModel> findAll() {
-        return this.repository.findAll();
+    public clientes save(clientes cliente) {
+        System.out.println("Guardando cliente");
+        return repository.save(cliente);
     }
-
-    @Override
-    public Optional<clientesModel> findById(int id) {
-        return this.repository.findById(id);
-    }
-
-    @Override
-    public clientesModel save(clientesModel entity) {
-        return this.repository.save(entity);
-    }
-
-    @Override
-    public Iterable<clientesModel> saveAll(Iterable<clientesModel> entities) {
-        return this.repository.saveAll(entities);
-    }
-
-    @Override
-    public clientesModel findByNombre(String nombre) {
-        return this.repository.findByNombre(nombre);
-    }
+    
 }

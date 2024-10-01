@@ -1,79 +1,39 @@
-package com.example.intecap.controller;
+package com.example.intecap.Controller;
 
-
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.intecap.models.productosModel;
-import com.example.intecap.service.productosService;
+import com.example.intecap.Models.productos;
+import com.example.intecap.Service.productoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/productos")
-@CrossOrigin
-public class productosController {
+public class productosController  {
 
     @Autowired
-    private productosService productosService;
+    private productoService ProductosService;
 
-    @GetMapping("/listar")
-    public Iterable<productosModel> getProductos() {
-        return this.productosService.findAll();
+    @GetMapping("/")
+    public Iterable<productos> getProductos() {
+        return this.ProductosService.findAll();
     }
 
-    @PostMapping("/guardar")
-    public ResponseEntity<String> saveProductos(@RequestBody productosModel entity) {
-
+    @PostMapping("/save")
+    public ResponseEntity<String> saveProductos(@RequestBody productos producto) {
         try {
-            this.productosService.save(entity);
-            return ResponseEntity.ok("Producto guardado correctamente");
+            System.out.println(producto.getNombre() + " " + producto.getDescripcion());
+            this.ProductosService.save(producto);
+            return ResponseEntity.ok("Producto guardado");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error al guardar el producto");
+            return ResponseEntity.badRequest().body("Error al guardar el producto: " + e.getMessage());
         }
+
     }
 
-    @DeleteMapping("/eliminar/{idProducto}")
-    public ResponseEntity<String> deleteProductos(@PathVariable int idProducto) {
-        try {
-            this.productosService.deleteById(idProducto);
-            return ResponseEntity.ok("Producto eliminado correctamente");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error al eliminar el producto");
-        }
-    }
-
-    @PutMapping("/actualizar/{idProducto}")
-    public ResponseEntity<String> updateProductos(@PathVariable int idProducto, @RequestBody productosModel entity) {
-        try {
-            // Buscamos el id del producto
-            Optional<productosModel> existingProducto = this.productosService.findById(idProducto);
-
-            if (existingProducto.isPresent()) {
-                productosModel productoToUpdate = existingProducto.get();
-
-                productoToUpdate.setNombre(entity.getNombre());
-                productoToUpdate.setPrecio(entity.getPrecio());
-                productoToUpdate.setStock(entity.getStock());
-
-                // Guardamos los cambios
-                this.productosService.save(productoToUpdate);
-                this.productosService.save(entity);
-                return ResponseEntity.ok("Producto actualizado correctamente");
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
-            }
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error al actualizar el producto");
-        }
-    }
 }
