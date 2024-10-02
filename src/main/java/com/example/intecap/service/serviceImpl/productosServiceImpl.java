@@ -1,22 +1,22 @@
-package com.tienda.tienda.Service.ServiceImpl;
+package com.example.intecap.service.serviceImpl;
 
 import org.springframework.stereotype.Service;
 
-import com.tienda.tienda.Models.productos;
-import com.tienda.tienda.Repository.productoRepository;
-import com.tienda.tienda.Service.productoService;
-import com.tienda.tienda.common.CommonSvcImpl;
+import com.example.intecap.models.productosModel;
+import com.example.intecap.repository.productoRepository;
+import com.example.intecap.service.productoService;
+import com.example.intecap.common.CommonSvcImpl;
 
 @Service
-public class productosServiceImpl extends CommonSvcImpl<productos, productoRepository> implements productoService {
+public class productosServiceImpl extends CommonSvcImpl<productosModel, productoRepository> implements productoService {
 
     @Override
-    public Iterable<productos> findAll() {
+    public Iterable<productosModel> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public productos save(productos producto) {
+    public productosModel save(productosModel producto) {
         System.out.println("Guardando producto");
         return repository.save(producto);
     }

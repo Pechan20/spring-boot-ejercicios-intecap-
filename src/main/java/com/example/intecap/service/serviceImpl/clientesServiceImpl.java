@@ -1,22 +1,22 @@
-package com.example.tienda.Service.ServiceImpl;
+package com.example.intecap.service.serviceImpl;
 
 import org.springframework.stereotype.Service;
 
-import com.example.tienda.Models.clientes;
-import com.example.tienda.Repository.clientesRepository;
-import com.example.tienda.Service.clienteService;
-import com.example.tienda.common.CommonSvcImpl;
+import com.example.intecap.models.clientesModel;
+import com.example.intecap.repository.clientesRepository;
+import com.example.intecap.service.clienteService;
+import com.example.intecap.common.CommonSvcImpl;
 
 @Service
-public class clientesServiceImpl extends CommonSvcImpl<clientes, clientesRepository> implements clienteService {
+public class clientesServiceImpl extends CommonSvcImpl<clientesModel, clientesRepository> implements clienteService {
 
     @Override
-    public Iterable<clientes> findAll() {
+    public Iterable<clientesModel> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public clientes save(clientes cliente) {
+    public clientesModel save(clientesModel cliente) {
         System.out.println("Guardando cliente");
         return repository.save(cliente);
     }

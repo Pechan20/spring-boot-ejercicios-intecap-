@@ -1,10 +1,10 @@
-package com.tienda.tienda.Controller;
+package com.example.intecap.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tienda.tienda.Models.clientes;
-import com.tienda.tienda.Service.clienteService;
+import com.example.intecap.models.clientesModel;
+import com.example.intecap.service.clienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ public class clientesController  {
     private clienteService ClientesService;
 
     @GetMapping("/")
-    public Iterable<clientes> getClientes() {
+    public Iterable<clientesModel> getClientes() {
         return this.ClientesService.findAll();
     }
-
+    // para poder consumir este apartado necesito colocar ("/clientes")
     @PostMapping("/save")
-    public ResponseEntity<String> saveClientes(@RequestBody clientes cliente) {
+    public ResponseEntity<String> saveClientes(@RequestBody clientesModel cliente) {
         try {
             System.out.println(cliente.getNombre() + " " + cliente.getApellido());
             this.ClientesService.save(cliente);

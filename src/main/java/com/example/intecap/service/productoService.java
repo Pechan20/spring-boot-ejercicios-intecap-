@@ -1,11 +1,11 @@
-package com.example.intecap.Service;
+package com.example.intecap.service;
 
-import com.example.intecap.Models.productos;
+import com.example.intecap.models.productosModel;
 import com.example.intecap.common.CommonSvc;
 
-public interface productoService extends CommonSvc<productos> {
+public interface productoService extends CommonSvc<productosModel> {
 
-    public Iterable<productos> findAll();
+    public Iterable<productosModel> findAll();
 
-    public productos save(productos producto);
+    public productosModel save(productosModel producto);
 }

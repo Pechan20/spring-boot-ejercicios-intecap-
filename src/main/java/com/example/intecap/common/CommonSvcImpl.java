@@ -16,31 +16,31 @@ public class CommonSvcImpl<E, R extends CrudRepository<E, Object>> implements Co
     @Override
     @Transactional
     public Iterable<E> findAll() {
-        return Repository.findAll();
+        return repository.findAll();
     }
 
     @Override
     @Transactional
     public Optional<E> findById(int id) {
-        return Repository.findById(id);
+        return repository.findById(id);
     }
 
     @Override
     @Transactional
     public E save(E entity) {
-        return Repository.save(entity);
+        return repository.save(entity);
     }
 
     @Override
     @Transactional
     public void deleteById(int id) {
-        Repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
     @Transactional
     public Iterable<E> saveAll(Iterable<E> entities) {
-        return Repository.saveAll(entities);
+        return repository.saveAll(entities);
     }
 
 }

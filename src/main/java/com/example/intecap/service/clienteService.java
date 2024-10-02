@@ -1,12 +1,12 @@
-package com.example.intecap.Service;
+package com.example.intecap.service;
 
 
-import com.example.intecap.Models.clientes;
+import com.example.intecap.models.clientesModel;
 import com.example.intecap.common.CommonSvc;
 
-public interface clienteService extends CommonSvc<clientes> {
+public interface clienteService extends CommonSvc<clientesModel> {
 
-    public Iterable<clientes> findAll();
+    public Iterable<clientesModel> findAll();
 
-    public clientes save(clientes cliente);
+    public clientesModel save(clientesModel cliente);
 }

@@ -1,8 +1,9 @@
-package com.example.intecap.Repository;
+package com.example.intecap.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import com.example.intecap.Models.productos;
 
-public interface productoRepository extends CrudRepository<productos, Long> {
+import com.example.intecap.models.clientesModel;
+
+public interface clientesRepository extends CrudRepository<clientesModel, Object> {
 
 }
